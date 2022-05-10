@@ -1,6 +1,8 @@
-import * as React from 'react';
+import { useContext } from 'react';
 
 import UnstyledLink from '@/components/links/UnstyledLink';
+
+import AppContext from '@/util/AppContext';
 
 const links = [
   { href: '/', label: 'Route 1' },
@@ -8,11 +10,13 @@ const links = [
 ];
 
 export default function Header() {
+  const { slug } = useContext(AppContext);
+
   return (
-    <header className='sticky top-0 z-50 bg-white'>
+    <header className='fixed top-0 z-50 w-screen bg-white '>
       <div className='layout flex h-14 items-center justify-between'>
         <UnstyledLink href='/' className='font-bold hover:text-gray-600'>
-          Home
+          Home - {slug}
         </UnstyledLink>
         <nav>
           <ul className='flex items-center justify-between space-x-4'>

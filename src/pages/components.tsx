@@ -1,6 +1,7 @@
 // !STARTERCONF You can delete this page
 import clsx from 'clsx';
-import * as React from 'react';
+import Link from 'next/link';
+import React from 'react';
 
 import Button from '@/components/buttons/Button';
 import Layout from '@/components/layout/Layout';
@@ -41,6 +42,9 @@ export default function ComponentsPage() {
               mode === 'dark' ? 'text-white' : 'text-black'
             )}
           >
+            <Link href='/login?url=components'>
+              <a>Login</a>
+            </Link>
             <h1>Built-in Components</h1>
             <ArrowLink direction='left' className='mt-2' href='/'>
               Back to Home
