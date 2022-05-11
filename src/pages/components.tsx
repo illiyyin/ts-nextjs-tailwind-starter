@@ -42,7 +42,7 @@ export default function ComponentsPage() {
               mode === 'dark' ? 'text-white' : 'text-black'
             )}
           >
-            <Link href='/login?url=components'>
+            <Link href='/login/url?redirect=components'>
               <a>Login</a>
             </Link>
             <h1>Built-in Components</h1>

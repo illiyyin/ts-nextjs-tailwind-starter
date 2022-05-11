@@ -10,10 +10,10 @@ import Header from '@/components/layout/Header';
 
 import { AppProvider } from '@/util/AppContext';
 
-/**
- * !STARTERCONF info
- * ? `Layout` component is called in every page using `np` snippets. If you have consistent layout across all page, you can add it here too
- */
+interface IValue {
+  slug: null | string;
+  setSlug: null | ((text: string) => void);
+}
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -21,11 +21,35 @@ function MyApp({ Component, pageProps }: AppProps) {
   // console.log(router)
 
   useEffect(() => {
-    !router.asPath.includes('login') && setSlug(router.asPath);
-    false && setSlug('');
-  }, [router.asPath]);
+    // console.log(router)
+
+    if (Object.prototype.hasOwnProperty.call(router.query, 'redirect')) {
+      const query = router.query.redirect as string;
+      setSlug(query);
+      // console.log(query)
+    }
+    // if (window) {
+    // const {query}:string= router.query
+    // query&&setSlug(query.redirect)
+
+    // const params = new URLSearchParams(window.location.search);
+    // const search = params.get('redirect');
+    // console.log(search)
+    // search&&setSlug(search);
+    // query&&console.log(query.redirect)
+    // query&&console.log(router.query.redirect)
+    // }
+    // !router.asPath.includes('login') && setSlug(router.asPath);
+    // false && setSlug('');
+  }, [router]);
+  // console.log(slug)
+
+  const value: IValue = {
+    slug,
+    setSlug,
+  };
   return (
-    <AppProvider value={{ slug, setSlug }}>
+    <AppProvider value={value}>
       <Header />
       <Component {...pageProps} />
     </AppProvider>
